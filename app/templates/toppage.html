@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% block body %}
+<body>
+    <div class="container">
+        <h1 class="title" align="center">Time Recorder 2019</h1>
+    </div>
+
+<!--    <form action="{{ url_for('change_date') }}" method=post>-->
+<!--        <dl>-->
+<!--            <dt>Date:-->
+<!--            <dd><input type=date name=date value={{ date }}>-->
+<!--            <dd><input type=submit value=Change>-->
+<!--        </dl>-->
+<!--    </form>-->
+
+    <div class="ui segment">
+        <h2 class="ui header">Add Record</h2>
+        <div id=container>
+          <div id=slider></div>
+        </div>
+
+        <form action="{{ url_for('add_record') }}" methods=post>
+            <input type="date" name="date" value={{ date }}>
+            <input type="text" name="starttime" id="leftvalue">
+            <input type="text" name="endtime" id="rightvalue">
+            <div class="inline field">
+                <label>Project Name: </label>
+                <select name="projectname">
+                    {% for project in projects %}
+                        <option value={{ project.projectname }}>{{ project.projectname }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="inline field">
+                <label>Task Type: </label>
+                <select name="tasktype">
+                    {% for tasktype in tasktypes %}
+                        <option value={{ tasktype }}>{{ tasktype }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div class="ui segment">
+        <h2 class="ui header">Today's Record</h2>
+<!--        <form class="ui form" action="{{ url_for('update_record') }}" method=post>-->
+            <table class="ui compact celled table">
+                <thead>
+                <tr>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Project Name</th>
+                    <th>Hours</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for timerecord in timerecords %}
+                <tr>
+                    <!--
+                    <td><input type="text" name="starttime[]" placeholder={{ timerecord.starttime }} ></td>
+                    <td><input type="text" name="endtime[]" placeholder={{ timerecord.endtime }} ></td>
+                    <td><input type="text" name="projectname[]" placeholder="{{ timerecord.projectname }}" ></td>
+                    <td><input type="text" name="minutes[]" placeholder={{ timerecord.minutes }} ></td>
+                    -->
+                    <td>{{ timerecord.starttime }}</td>
+                    <td>{{ timerecord.endtime }}</td>
+                    <td>{{ timerecord.projectname }}</td>
+                    <td>{{ timerecord.minutes }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <button class="ui button">Update</button>
+<!--        </form>-->
+    </div>
+
+    <script>
+        // For Slider
+        var slider = document.getElementById("slider"),
+            leftValue = document.getElementById('leftvalue'),
+            rightValue = document.getElementById('rightvalue');
+
+        // 0 = initial minutes from start of day
+        // 1440 = maximum minutes in a day
+        // step: 30 = amount of minutes to step by.
+        var initialStartMinute = 600,
+                initialEndMinute = 630,
+                step = 30;
+
+        slider = noUiSlider.create(slider,{
+          start:[initialStartMinute,initialEndMinute],
+          connect:true,
+          step:step,
+          range:{
+            'min':480,
+            'max':1320
+          }
+        });
+
+        var convertValuesToTime = function(values,handle){
+          var hours = 0,
+                minutes = 0;
+
+          if(handle === 0){
+            hours = convertToHour(values[0]);
+            minutes = convertToMinute(values[0],hours);
+    <!--        leftValue.innerHTML = formatHoursAndMinutes(hours,minutes);-->
+            leftValue.value = formatHoursAndMinutes(hours,minutes);
+            return;
+          };
+
+          hours = convertToHour(values[1]);
+          minutes = convertToMinute(values[1],hours);
+    <!--        rightValue.innerHTML = formatHoursAndMinutes(hours,minutes);-->
+            rightValue.value = formatHoursAndMinutes(hours,minutes);
+
+        };
+
+        var convertToHour = function(value){
+            return Math.floor(value / 60);
+        };
+        var convertToMinute = function(value,hour){
+            return value - hour * 60;
+        };
+        var formatHoursAndMinutes = function(hours,minutes){
+                if(hours.toString().length == 1) hours = '0' + hours;
+            if(minutes.toString().length == 1) minutes = '0' + minutes;
+            return hours+':'+minutes;
+        };
+
+        slider.on('update',function(values,handle){
+          convertValuesToTime(values,handle);
+        });
+
+        function submitData() {
+            document.getElementById("sumbitData").submit();
+        }
+    </script>
+</body>
+{% endblock %}

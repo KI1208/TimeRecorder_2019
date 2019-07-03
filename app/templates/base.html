@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Time Recorder 2019</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../static/fontawesome.min.css">
+        <link rel="stylesheet" href="../static/nouislider.min.css">
+        <script src="../static/jquery-3.4.1.min.js"></script>
+        <script src="../static/nouislider.min.js"></script>
+        <link rel="stylesheet" href="../static/semantic.min.css">
+        <script src="../static/semantic.min.js"></script>
+        <link rel="stylesheet" href="../static/calendar.min.css">
+        <script src="../static/calendar.min.js"></script>
+        <style>
+            #slider {
+                width: 800px;
+                margin: 0 auto 30px;
+            }
+            .noUi-horizontal .noUi-handle {
+              width: 34px;
+              height: 28px;
+              left: -17px;
+              top: -6px;
+            }
+        </style>
+    </head>
+    <nav class="ui secondary pointing menu">
+        <a class="item active" href="{{ url_for('toppage') }}">Home</a>
+        <a class="item" href="{{ url_for('projects') }}">Projects</a>
+        <div class="right menu">
+            <a class="ui item">Logout(Not Implemented Yet)</a>
+        </div>
+    </nav>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <article class="ui message">
+        <div class="header"></div>
+        <p>
+            {% for message in messages -%}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </p>
+    </article>
+    {% endif %}
+    {% endwith %}
+
+    {% block body %}{% endblock %}
+</html>

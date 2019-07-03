@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="ui segment">
+    <h2 class="ui header">New Project Registration</h2>
+    <form class="ui form" action="{{ url_for('add_project') }}" method=post>
+        <div class="inline field">
+            <label>Project Name</label>
+            <input type="text" name="projectname" placeholder="Project Name">
+        </div>
+        <div class="inline field">
+            <label>Project ID</label>
+            <input type="text" name="projectid" placeholder="Project PS-XXXXXX">
+        </div>
+        <div class="inline field">
+            <label>Project Description</label>
+            <input type="text" name="projectdesc" placeholder="Project Description">
+        </div>
+        <div class="inline fields">
+            <label>Project State</label>
+            <div class="field">
+                <div class="ui radio checkbox">
+                    <input type="radio" name="projectstatus" value="active" checked="checked">
+                    <label>Active</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui radio checkbox">
+                    <input type="radio" name="projectstatus" value="inactive">
+                    <label>Inactive</label>
+                </div>
+            </div>
+        </div>
+        <button class="ui button">Register</button>
+    </form>
+</div>
+
+<div class="ui segment">
+    <h2 class="ui header">Projects</h2>
+    <form class="ui form" action="{{ url_for('update_project') }}" method=post>
+        <table class="ui compact celled definition table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Project ID</th>
+                <th>Description</th>
+                <th>Hours</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for project in projects %}
+            <tr>
+                <td>
+                {% if project.projectstatus == True %}
+                <select name="projectstatus2[]" size="2">
+                    <option value="active" selected>Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+                {% else %}
+                <select name="projectstatus2[]" size="2">
+                    <option value="active">Active</option>
+                    <option value="inactive" selected>Inactive</option>
+                </select>
+                {% endif %}
+                </td>
+                <td><input type="text" name="projectname[]" placeholder="{{ project.projectname }}" ></td>
+                <td><input type="text" name="projectid[]" placeholder={{ project.projectid }} ><input type="hidden" name="id[]" value={{ project.id }}></td>
+                <td><input type="text" name="projectdesc[]" placeholder="{{ project.projectdesc }}" ></td>
+                <td><input type="text" name="projectstatus[]" placeholder={{ project.projectstatus }} ></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <button class="ui button">Update</button>
+    </form>
+</div>
+{% endblock %}
