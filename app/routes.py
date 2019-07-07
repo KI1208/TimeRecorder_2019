@@ -6,7 +6,7 @@ from dateutil.parser import parse
 from app.dashapp import dashapp
 
 JST = timezone(timedelta(hours=+9), 'JST')
-TASKTYPES = ['Meeting', 'Investigation', 'Document', 'Communication', 'Admin', 'Onsite', 'Knowledge Sharing', ]
+TASKTYPES = ['Meeting', 'Investigation', 'Document', 'Communication', 'Admin', 'Onsite', 'Knowledge Sharing', 'Rest,Move']
 
 @app.route('/', methods=['GET'])
 def toppage():
