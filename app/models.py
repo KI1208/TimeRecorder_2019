@@ -6,6 +6,8 @@ class Project(db.Model):
     projectname = db.Column(db.String(120), index=True, unique=True)
     projectdesc = db.Column(db.String(120))
     projectstatus = db.Column(db.Boolean)
+    projecthours = db.Column(db.Integer)
+    projectcomsumedhours = db.Column(db.Integer)
 
     # この関数は、インタープリタ(コンソール)からこのクラス(からできたインスタンス)を呼んだ際に、
     # どのように表示されるかを定義している。ここではusernameを表示させている。

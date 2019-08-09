@@ -7,3 +7,5 @@ class Config(object):
         'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SESSION_TYPE = 'filesystem'
+    TASKTYPES = ['Meeting', 'Investigation', 'Communication', 'Admin', 'Training',
+                 'Onsite', 'Knowledge Sharing', 'Lab', 'Design', 'Preparation']

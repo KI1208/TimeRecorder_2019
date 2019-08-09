@@ -15,6 +15,10 @@
             <label>Project Description</label>
             <input type="text" name="projectdesc" placeholder="Project Description">
         </div>
+        <div class="inline field">
+            <label>Project Hours</label>
+            <input type="text" name="projecthours" placeholder="36">
+        </div>
         <div class="inline fields">
             <label>Project State</label>
             <div class="field">
@@ -45,6 +49,7 @@
                 <th>Project ID</th>
                 <th>Description</th>
                 <th>Hours</th>
+                <th>Consumed Hours</th>
             </tr>
             </thead>
             <tbody>
@@ -66,7 +71,8 @@
                 <td><input type="text" name="projectname[]" placeholder="{{ project.projectname }}" ></td>
                 <td><input type="text" name="projectid[]" placeholder={{ project.projectid }} ><input type="hidden" name="id[]" value={{ project.id }}></td>
                 <td><input type="text" name="projectdesc[]" placeholder="{{ project.projectdesc }}" ></td>
-                <td><input type="text" name="projectstatus[]" placeholder={{ project.projectstatus }} ></td>
+                <td><input type="text" name="projecthours[]" placeholder={{ project.projecthours }} ></td>
+                <td><input type="text" name="projectcomsumedhours[]" placeholder={{ project.projectcomsumedhours }} ></td>
             </tr>
             {% endfor %}
             </tbody>
