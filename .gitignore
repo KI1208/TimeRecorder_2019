@@ -1,0 +1,6 @@
+migrations/
+venv/
+memo.md
+.idea/
+*.db
+*.pyc
