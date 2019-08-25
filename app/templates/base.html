@@ -15,12 +15,33 @@
             #slider {
                 width: 800px;
                 margin: 0 auto 30px;
+                float: left;
             }
+
+            .clear-float {
+                clear: both;
+            }
+
             .noUi-horizontal .noUi-handle {
-              width: 34px;
-              height: 28px;
-              left: -17px;
-              top: -6px;
+              width: 18px;
+              height: 16px;
+              left: -9px;
+              top: 0px;
+            }
+
+            .noUi-handle:before,
+            .noUi-handle:after {
+              content: "";
+              display: block;
+              position: absolute;
+              height: 10px;
+              width: 1px;
+              background: #FFF;
+              left: 7px;
+              top: 3px;
+            }
+            .noUi-handle:after {
+              left: 9px;
             }
         </style>
     </head>
@@ -28,6 +49,7 @@
         <a class="item active" href="{{ url_for('toppage') }}">Home</a>
         <a class="item" href="{{ url_for('projects') }}">Projects</a>
         <a class="item" href="{{ url_for('weekly_report') }}">Weekly Report</a>
+        <a class="item" href="{{ url_for('quarterly_report') }}">Quarterly Report</a>
         <div class="right menu">
             <a class="ui item">Logout(Not Implemented Yet)</a>
         </div>

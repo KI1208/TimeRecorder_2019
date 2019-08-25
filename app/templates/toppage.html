@@ -2,7 +2,7 @@
 {% block body %}
 <body>
     <div class="container">
-        <h1 class="title" align="center">Time Recorder 2019</h1>
+        <h1 class="title" align="left">Time Recorder 2019</h1>
     </div>
 
 <!--    <form action="{{ url_for('change_date') }}" method=post>-->
@@ -18,29 +18,51 @@
         <div id=container>
           <div id=slider></div>
         </div>
-
-        <form action="{{ url_for('add_record') }}" methods=post>
-            <input type="date" name="date" value={{ date }}>
-            <input type="text" name="starttime" id="leftvalue">
-            <input type="text" name="endtime" id="rightvalue">
-            <div class="inline field">
-                <label>Project Name: </label>
-                <select name="projectname">
-                    {% for project in projects %}
-                        <option value={{ project.projectname }}>{{ project.projectname }}</option>
-                    {% endfor %}
-                </select>
+        <div class="clear-float"></div>
+        <form class="ui form" action="{{ url_for('add_record') }}" methods=post>
+            <div class="field">
+                <div class="fields">
+                    <div class="two wide field">
+                        <input type="date" name="date" value={{ date }}>
+                    </div>
+                    <div class="two wide field">
+                        <input type="text" name="starttime" id="leftvalue">
+                    </div>
+                    <div class="two wide field">
+                        <input type="text" name="endtime" id="rightvalue">
+                    </div>
+                </div>
             </div>
-            <div class="inline field">
-                <label>Task Type: </label>
-                <select name="tasktype">
-                    {% for tasktype in tasktypes %}
-                        <option value={{ tasktype }}>{{ tasktype }}</option>
-                    {% endfor %}
-                </select>
+            <div class="field">
+                <div class="fields">
+                    <div class="two wide field">
+                        <label>Project Name: </label>
+                    </div>
+                    <div class="four wide field">
+                        <select name="projectname">
+                            {% for project in projects %}
+                                <option value={{ project.projectname }}>{{ project.projectname }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
             </div>
 
-            <input type="submit" value="Submit">
+            <div class="field">
+                <div class="fields">
+                    <div class="two wide field">
+                        <label>Task Type: </label>
+                    </div>
+                    <div class="four wide field">
+                        <select name="tasktype">
+                            {% for tasktype in tasktypes %}
+                                <option value={{ tasktype }}>{{ tasktype }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button class="ui button" type="submit">Submit</button>
         </form>
     </div>
 

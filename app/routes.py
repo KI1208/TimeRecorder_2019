@@ -6,6 +6,7 @@ from dateutil.parser import parse
 from config import Config
 
 from dashapp import dashapp
+from dashappq import dashapp
 
 JST = timezone(timedelta(hours=+9), 'JST')
 TASKTYPES = Config.TASKTYPES
@@ -160,6 +161,11 @@ def dummy():
 @app.route('/weekly_report', methods=['GET', 'POST'])
 def weekly_report():
     return render_template('report.html')
+
+
+@app.route('/quarterly_report', methods=['GET', 'POST'])
+def quarterly_report():
+    return render_template('quarterly_report.html')
 
 
 def projectstatus_changer(status):
