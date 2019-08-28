@@ -116,8 +116,8 @@
         // 0 = initial minutes from start of day
         // 1440 = maximum minutes in a day
         // step: 30 = amount of minutes to step by.
-        var initialStartMinute = 600,
-                initialEndMinute = 630,
+        var initialStartMinute = {{ lasttime }},
+                initialEndMinute = {{ lasttime }} + 30,
                 step = 30;
 
         slider = noUiSlider.create(slider,{

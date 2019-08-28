@@ -30,12 +30,19 @@ def toppage():
     for record in today_record:
         timerecords.append({'projectname': Project.query.filter_by(projectid=record.projectid).first().projectname,
                             'starttime': record.starttime.time(),
-                            'endtime': record.endtime.time(),
+                            'endtime': record.endtime.time(), # 11:00:00
                             'minutes': record.minutes
                             })
 
+    # その日の一番最後の終了時刻を取得しておく(10時 -> 600のような変換が必要)
+    try:
+        parsed_lasttime = timerecords[-1]['endtime']
+        lasttime = parsed_lasttime.hour * 60 + parsed_lasttime.minute
+    except IndexError as e:
+        lasttime = 600
+
     return render_template('toppage.html', date=requesteddate, tasktypes=TASKTYPES, projects=existingprojects,
-                           timerecords=timerecords)
+                           timerecords=timerecords, lasttime=lasttime)
 
 
 @app.route('/changedate', methods=['POST', 'GET'])
