@@ -58,11 +58,11 @@
     {% if messages %}
     <article class="ui message">
         <div class="header"></div>
-        <p>
+        <ul>
             {% for message in messages -%}
             <li>{{ message }}</li>
             {% endfor %}
-        </p>
+        </ul>
     </article>
     {% endif %}
     {% endwith %}

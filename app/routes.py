@@ -38,10 +38,10 @@ def toppage():
                            timerecords=timerecords)
 
 
-@app.route('/changedate', methods=['POST'])
+@app.route('/changedate', methods=['POST', 'GET'])
 def change_date():
-    date = parse(request.form['date'])  # from str to datetime
-    # print(type(date),date)  # For Debug
+    requestdata = request.values
+    date = requestdata['date']
 
     return redirect(url_for('toppage', date=date))
 

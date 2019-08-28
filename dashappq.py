@@ -45,7 +45,7 @@ def server_layout():
             dcc.Slider(id='billable', min=0, max=100, step=1, marks={i: f'{i}' for i in range(0, 100, 10)}),
             dcc.Interval(
                 id='interval-component',
-                interval=1000,  # in milliseconds
+                interval=10000,  # in milliseconds
                 n_intervals=0
             )
         ]

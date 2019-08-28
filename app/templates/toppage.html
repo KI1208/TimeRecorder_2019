@@ -1,18 +1,25 @@
 {% extends "base.html" %}
 {% block body %}
 <body>
-    <div class="container">
-        <h1 class="title" align="left">Time Recorder 2019</h1>
+    <div class="ui segment">
+        <h1 class="ui header">Time Recorder 2019</h1>
     </div>
-
-<!--    <form action="{{ url_for('change_date') }}" method=post>-->
-<!--        <dl>-->
-<!--            <dt>Date:-->
-<!--            <dd><input type=date name=date value={{ date }}>-->
-<!--            <dd><input type=submit value=Change>-->
-<!--        </dl>-->
-<!--    </form>-->
-
+    <div class="ui segment">
+        <h2 class="ui header">Select Date</h2>
+        <form class="ui form" action="{{ url_for('change_date') }}">
+            <div class="field">
+                <div class="fields">
+                    <div class="two wide field">
+                        <label>Date</label>
+                    </div>
+                    <div class="three wide field">
+                        <input type="date" name="date" value={{ date }}>
+                    </div>
+                </div>
+            </div>
+            <button class="ui button" type="submit">Change Date</button>
+        </form>
+    </div>
     <div class="ui segment">
         <h2 class="ui header">Add Record</h2>
         <div id=container>
@@ -23,6 +30,9 @@
             <div class="field">
                 <div class="fields">
                     <div class="two wide field">
+                        <label>Date & Time: </label>
+                    </div>
+                    <div class="three wide field">
                         <input type="date" name="date" value={{ date }}>
                     </div>
                     <div class="two wide field">
@@ -38,7 +48,7 @@
                     <div class="two wide field">
                         <label>Project Name: </label>
                     </div>
-                    <div class="four wide field">
+                    <div class="three wide field">
                         <select name="projectname">
                             {% for project in projects %}
                                 <option value={{ project.projectname }}>{{ project.projectname }}</option>
@@ -47,13 +57,12 @@
                     </div>
                 </div>
             </div>
-
             <div class="field">
                 <div class="fields">
                     <div class="two wide field">
                         <label>Task Type: </label>
                     </div>
-                    <div class="four wide field">
+                    <div class="three wide field">
                         <select name="tasktype">
                             {% for tasktype in tasktypes %}
                                 <option value={{ tasktype }}>{{ tasktype }}</option>
@@ -65,7 +74,6 @@
             <button class="ui button" type="submit">Submit</button>
         </form>
     </div>
-
     <div class="ui segment">
         <h2 class="ui header">Today's Record</h2>
 <!--        <form class="ui form" action="{{ url_for('update_record') }}" method=post>-->
