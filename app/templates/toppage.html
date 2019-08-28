@@ -5,32 +5,31 @@
         <h1 class="ui header">Time Recorder 2019</h1>
     </div>
     <div class="ui segment">
-        <h2 class="ui header">Select Date</h2>
+        <h2 class="ui header">Add Record</h2>
         <form class="ui form" action="{{ url_for('change_date') }}">
             <div class="field">
                 <div class="fields">
                     <div class="two wide field">
-                        <label>Date</label>
+                        <label>Current Target Date</label>
                     </div>
                     <div class="three wide field">
                         <input type="date" name="date" value={{ date }}>
                     </div>
+                    <div class="three wide field">
+                        <button class="ui button" type="submit">Change Date</button>
+                    </div>
                 </div>
             </div>
-            <button class="ui button" type="submit">Change Date</button>
         </form>
-    </div>
-    <div class="ui segment">
-        <h2 class="ui header">Add Record</h2>
         <div id=container>
-          <div id=slider></div>
+            <div id=slider></div>
         </div>
         <div class="clear-float"></div>
         <form class="ui form" action="{{ url_for('add_record') }}" methods=post>
             <div class="field">
                 <div class="fields">
                     <div class="two wide field">
-                        <label>Date & Time: </label>
+                        <label>Input Date & Time: </label>
                     </div>
                     <div class="three wide field">
                         <input type="date" name="date" value={{ date }}>
@@ -98,7 +97,7 @@
                     <td>{{ timerecord.starttime }}</td>
                     <td>{{ timerecord.endtime }}</td>
                     <td>{{ timerecord.projectname }}</td>
-                    <td>{{ timerecord.minutes }}</td>
+                    <td>{{ timerecord.hours }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>

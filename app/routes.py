@@ -31,7 +31,7 @@ def toppage():
         timerecords.append({'projectname': Project.query.filter_by(projectid=record.projectid).first().projectname,
                             'starttime': record.starttime.time(),
                             'endtime': record.endtime.time(), # 11:00:00
-                            'minutes': record.minutes
+                            'hours': record.minutes/60.0
                             })
 
     # その日の一番最後の終了時刻を取得しておく(10時 -> 600のような変換が必要)
