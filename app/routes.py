@@ -29,6 +29,7 @@ def toppage():
     timerecords = []
     for record in today_record:
         timerecords.append({'projectname': Project.query.filter_by(projectid=record.projectid).first().projectname,
+                            'tasktype': record.tasktype,
                             'starttime': record.starttime.time(),
                             'endtime': record.endtime.time(), # 11:00:00
                             'hours': record.minutes/60.0
@@ -56,6 +57,8 @@ def change_date():
 @app.route('/projects', methods=['GET', 'POST'])
 def projects():
     existingprojects = [project for project in Project.query.all()]
+    # existingprojects = [project for project in Project.query.order_by(Project.projectstatus.desc(), Project.id).all()]
+    # sorted_existingprojects = sorted(existingprojects, key=lambda x: (x['id'], x['projectstatus']))
 
     return render_template('projects.html', projects=existingprojects)
 
